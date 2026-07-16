@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dos Palmas Lodge – Lusaka, Zambia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green:  #1A3D2B;
+    --green2: #2A5540;
+    --gold:   #C8922A;
+    --gold2:  #E8B84B;
+    --cream:  #F7F3EC;
+    --sand:   #EDE7D9;
+    --text:   #2C2C2C;
+    --muted:  #6B6B6B;
+    --white:  #FDFAF5;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px; transition: background .4s, padding .4s;
+  }
+  nav.scrolled { background: var(--green); padding: 14px 48px; box-shadow: 0 2px 20px rgba(0,0,0,.25); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: .04em; text-decoration: none; }
+  .nav-logo span { color: var(--gold2); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.85); font-size: .85rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold2); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-wa {
+    width: 38px; height: 38px; border-radius: 50%; background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; text-decoration: none; transition: transform .2s;
+  }
+  .nav-wa:hover { transform: scale(1.1); }
+  .nav-cta { background: var(--gold); color: #fff; padding: 10px 24px; border-radius: 4px; font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .15s; }
+  .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+  /* HERO */
+  #hero { height: 100vh; min-height: 600px; background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80') center/cover no-repeat; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(15,35,20,.74) 0%, rgba(26,61,43,.55) 100%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 24px; }
+  .hero-eyebrow { font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold2); font-weight: 500; margin-bottom: 20px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: #fff; line-height: 1.1; font-weight: 700; margin-bottom: 18px; }
+  .hero-title em { font-style: italic; color: var(--gold2); }
+  .hero-sub { color: rgba(255,255,255,.75); font-size: 1.05rem; font-weight: 300; max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: #fff; padding: 14px 36px; border-radius: 4px; font-size: .88rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .15s; }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,.6); color: #fff; padding: 14px 36px; border-radius: 4px; font-size: .88rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; transition: border-color .2s, background .2s; }
+  .btn-outline:hover { border-color: var(--gold2); background: rgba(200,146,42,.12); }
+  .hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,.5); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; animation: bounce 2s infinite; }
+  .hero-scroll::after { content: ''; width: 1px; height: 40px; background: rgba(255,255,255,.3); }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* SHARED */
+  section { padding: 96px 48px; }
+  .section-eyebrow { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; font-weight: 700; color: var(--green); margin-bottom: 16px; }
+  .section-body { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 520px; }
+  .container { max-width: 1160px; margin: 0 auto; }
+
+  /* WELCOME */
+  #welcome { background: var(--white); }
+  .welcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .welcome-img { position: relative; border-radius: 4px; overflow: visible; }
+  .welcome-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; border-radius: 4px; transition: transform .6s; }
+  .welcome-img:hover img { transform: scale(1.03); }
+  .welcome-img::before { content: ''; position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px; border: 2px solid var(--gold); border-radius: 4px; z-index: -1; }
+  .welcome-stats { display: flex; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+  .stat-item { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--green); line-height: 1; }
+  .stat-label { font-size: .75rem; color: var(--muted); letter-spacing: .06em; margin-top: 4px; }
+
+  /* ROOMS */
+  #rooms { background: var(--cream); }
+  .rooms-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .room-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.07); transition: transform .3s, box-shadow .3s; }
+  .room-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.13); }
+  .room-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .room-card-body { padding: 24px; }
+  .room-tag { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+  .room-name { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--green); margin-bottom: 10px; }
+  .room-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .room-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--sand); }
+  .room-price { font-size: .85rem; color: var(--muted); }
+  .room-price strong { font-size: 1.15rem; color: var(--green); font-weight: 700; }
+  .room-price em { font-style: normal; font-size: .75rem; color: var(--muted); }
+  .room-link { font-size: .8rem; font-weight: 600; color: var(--gold); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+  .room-link:hover { color: var(--green); }
+
+  /* EXPERIENCE / DINING */
+  #experience { background: var(--green); color: #fff; }
+  #experience .section-title { color: #fff; }
+  #experience .section-eyebrow { color: var(--gold2); }
+  #experience .section-body { color: rgba(255,255,255,.65); }
+  .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px; }
+  .exp-card { position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .exp-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; filter: brightness(.68); }
+  .exp-card:hover img { transform: scale(1.06); filter: brightness(.48); }
+  .exp-card-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 24px 28px; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%); }
+  .exp-card-label h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 6px; }
+  .exp-card-label p { font-size: .82rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+  .exp-card-num { position: absolute; top: 20px; left: 24px; font-size: .7rem; letter-spacing: .15em; color: var(--gold2); font-weight: 600; }
+
+  /* AMENITIES */
+  #amenities { background: var(--sand); padding: 64px 48px; }
+  .amenities-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; text-align: center; }
+  .amenity-item { padding: 28px 12px; }
+  .amenity-icon { font-size: 2rem; margin-bottom: 14px; }
+  .amenity-name { font-size: .8rem; font-weight: 600; color: var(--green); letter-spacing: .06em; line-height: 1.4; }
+
+  /* EVENTS */
+  #events { background: var(--white); }
+  .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
+  .event-card { position: relative; overflow: hidden; border-radius: 6px; min-height: 340px; cursor: pointer; }
+  .event-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; filter: brightness(.6); position: absolute; inset: 0; }
+  .event-card:hover img { transform: scale(1.05); filter: brightness(.4); }
+  .event-card-body { position: relative; z-index: 2; padding: 40px 36px; height: 100%; min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .event-tag { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold2); font-weight: 600; margin-bottom: 10px; }
+  .event-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: #fff; margin-bottom: 12px; }
+  .event-desc { font-size: .88rem; color: rgba(255,255,255,.72); line-height: 1.6; }
+
+  /* GALLERY */
+  #gallery { background: var(--cream); }
+  .gallery-header { text-align: center; margin-bottom: 48px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; gap: 8px; }
+  .gallery-item { overflow: hidden; border-radius: 4px; cursor: pointer; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:first-child img { aspect-ratio: 1; }
+  .gallery-item:not(:first-child) img { aspect-ratio: 4/3; }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 200; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 4px; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 2rem; cursor: pointer; background: none; border: none; line-height: 1; }
+
+  /* BOOK CTA */
+  #book { background: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1600&q=80') center/cover no-repeat; position: relative; text-align: center; padding: 120px 48px; }
+  #book::before { content: ''; position: absolute; inset: 0; background: rgba(15,35,20,.8); }
+  .book-content { position: relative; z-index: 2; }
+  .book-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; margin-bottom: 16px; font-weight: 700; }
+  .book-sub { color: rgba(255,255,255,.7); font-size: 1rem; margin-bottom: 40px; line-height: 1.7; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .book-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-whatsapp { background: #25D366; color: #fff; padding: 14px 32px; border-radius: 4px; font-size: .88rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background .2s; display: flex; align-items: center; gap: 8px; }
+  .btn-whatsapp:hover { background: #1fba59; }
+  .btn-call { border: 1.5px solid rgba(255,255,255,.5); color: #fff; padding: 14px 32px; border-radius: 4px; font-size: .88rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: all .2s; display: flex; align-items: center; gap: 8px; }
+  .btn-call:hover { border-color: var(--gold2); background: rgba(200,146,42,.15); }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-label { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+  .contact-value { font-size: .95rem; color: var(--text); }
+  .contact-value a { color: var(--green); text-decoration: none; font-weight: 500; }
+  .contact-value a:hover { color: var(--gold); }
+  .map-embed { margin-top: 28px; border-radius: 6px; overflow: hidden; border: 1px solid var(--sand); }
+  .map-placeholder { background: var(--sand); height: 180px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+  .map-placeholder a { color: var(--green); font-weight: 600; font-size: .88rem; text-decoration: none; }
+  .map-placeholder a:hover { color: var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-group label { font-size: .78rem; font-weight: 600; color: var(--green); letter-spacing: .06em; }
+  .form-group input, .form-group select, .form-group textarea { border: 1.5px solid var(--sand); border-radius: 4px; padding: 12px 14px; font-size: .9rem; font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); transition: border-color .2s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .btn-submit { background: var(--green); color: #fff; width: 100%; padding: 14px; border: none; border-radius: 4px; font-size: .9rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background .2s; margin-top: 4px; }
+  .btn-submit:hover { background: var(--green2); }
+  .form-note { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 10px; }
+
+  /* FOOTER */
+  footer { background: var(--green); color: rgba(255,255,255,.7); padding: 64px 48px 32px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 16px; }
+  .footer-tagline { font-style: italic; font-size: .9rem; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 20px; }
+  .footer-wa { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; padding: 10px 18px; border-radius: 4px; font-size: .8rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+  .footer-wa:hover { background: #1fba59; }
+  .footer-heading { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold2); font-weight: 600; margin-bottom: 20px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+  .footer-links a:hover { color: var(--gold2); }
+  .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin-bottom: 28px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; color: rgba(255,255,255,.4); }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-link { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; font-size: .8rem; font-weight: 600; transition: all .2s; }
+  .social-link:hover { border-color: var(--gold2); color: var(--gold2); }
+
+  /* FADE */
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: .1s; }
+  .fade-in-delay-2 { transition-delay: .2s; }
+  .fade-in-delay-3 { transition-delay: .3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav.scrolled { padding: 12px 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .welcome-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .welcome-img::before { display: none; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr 1fr; }
+    .amenities-grid { grid-template-columns: repeat(3, 1fr); }
+    .events-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .rooms-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .exp-grid { grid-template-columns: 1fr; }
+    .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">DOS PALMAS <span>LODGE</span></a>
+  <ul class="nav-links">
+    <li><a href="#welcome">About</a></li>
+    <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#experience">Dining</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://wa.me/260XXXXXXXXX" class="nav-wa" title="WhatsApp Us">💬</a>
+    <a href="#contact" class="nav-cta">Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Plot 9633, Chudleigh · Lusaka, Zambia</p>
+    <h1 class="hero-title">Relax. Refresh.<br><em>Repeat.</em></h1>
+    <p class="hero-sub">Where calm meets comfort. A peaceful escape surrounded by nature, warm hospitality, and everything you need to truly rest.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/260XXXXXXXXX" class="btn-primary">💬 Book via WhatsApp</a>
+      <a href="https://share.google/yqQOKBlPWcOH1Zl16" target="_blank" class="btn-outline">📍 Find Us on Google</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- WELCOME -->
+<section id="welcome">
+  <div class="container">
+    <div class="welcome-grid">
+      <div class="welcome-img fade-in">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="Dos Palmas Lodge"/>
+      </div>
+      <div class="fade-in fade-in-delay-1">
+        <p class="section-eyebrow">Welcome to Dos Palmas</p>
+        <h2 class="section-title">More Than a Stay.<br>A Feeling You Keep.</h2>
+        <p class="section-body">Nestled inside the serene layout of Chudleigh, Dos Palmas Lodge offers a rare blend of comfort, modern aesthetics, and open-air nature views. Whether you're here for a private retreat, our signature poolside dining, or catching a live event — we make every moment effortless.</p>
+        <p class="section-body" style="margin-top:16px;font-style:italic;color:var(--green);font-family:'Playfair Display',serif">"Come for a visit. Stay for a lifetime."</p>
+        <div class="welcome-stats">
+          <div class="stat-item">
+            <div class="stat-number">K650+</div>
+            <div class="stat-label">Nightly Rates From</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Plot 9633</div>
+            <div class="stat-label">Central St, Chudleigh</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5★</div>
+            <div class="stat-label">Guest Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section id="rooms">
+  <div class="container">
+    <div class="rooms-header">
+      <div class="fade-in">
+        <p class="section-eyebrow">Accommodation</p>
+        <h2 class="section-title">Your Private Sanctuary</h2>
+      </div>
+      <a href="#contact" class="btn-primary fade-in" style="white-space:nowrap">Enquire Now</a>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card fade-in">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Palm Suite"/>
+        <div class="room-card-body">
+          <p class="room-tag">Most Popular</p>
+          <h3 class="room-name">The Palm Suite</h3>
+          <p class="room-desc">Spacious, private and serene. Pool-facing views, king bed, and a quiet atmosphere perfect for couples or solo travellers who value space.</p>
+          <div class="room-footer">
+            <div class="room-price">From <strong>K850</strong><em>/night</em></div>
+            <a href="https://wa.me/260XXXXXXXXX" class="room-link">Book →</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card fade-in fade-in-delay-1">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Garden Room"/>
+        <div class="room-card-body">
+          <p class="room-tag">Best Value</p>
+          <h3 class="room-name">Garden Room</h3>
+          <p class="room-desc">Cosy, clean and surrounded by greenery. Everything you need and nothing you don't — the perfect working retreat or overnight stop.</p>
+          <div class="room-footer">
+            <div class="room-price">From <strong>K650</strong><em>/night</em></div>
+            <a href="https://wa.me/260XXXXXXXXX" class="room-link">Book →</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card fade-in fade-in-delay-2">
+        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600&q=80" alt="Family Villa"/>
+        <div class="room-card-body">
+          <p class="room-tag">Families & Groups</p>
+          <h3 class="room-name">Family Villa</h3>
+          <p class="room-desc">Expansive living space with multiple rooms and a private outdoor area. Bring the whole family and settle in for a stay worth remembering.</p>
+          <div class="room-footer">
+            <div class="room-price">From <strong>K1,400</strong><em>/night</em></div>
+            <a href="https://wa.me/260XXXXXXXXX" class="room-link">Book →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:28px;color:var(--muted);font-size:.85rem">All rates subject to availability. Contact us directly for group bookings and extended stays.</p>
+  </div>
+</section>
+
+<!-- DINING -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-eyebrow">The Culinary Experience</p>
+      <h2 class="section-title">Fresh Poolside Dining</h2>
+      <p class="section-body">Local cuts and international classics served fresh from our kitchen — straight to your table by the pool or in the comfort of your room.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card fade-in">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="Rump Steak"/>
+        <span class="exp-card-num">01</span>
+        <div class="exp-card-label">
+          <h3>Rump Steak</h3>
+          <p>Flame-finished cut with mashed potatoes and garden salad.</p>
+        </div>
+      </div>
+      <div class="exp-card fade-in fade-in-delay-1">
+        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=500&q=80" alt="English Breakfast"/>
+        <span class="exp-card-num">02</span>
+        <div class="exp-card-label">
+          <h3>English Breakfast</h3>
+          <p>Fried eggs, savory sausages, grilled bacon and toasted bread.</p>
+        </div>
+      </div>
+      <div class="exp-card fade-in fade-in-delay-2">
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&q=80" alt="Grilled Fish"/>
+        <span class="exp-card-num">03</span>
+        <div class="exp-card-label">
+          <h3>Charcoal Grilled Fish</h3>
+          <p>Whole seasoned catch, crisp from the grill, served with golden chips.</p>
+        </div>
+      </div>
+      <div class="exp-card fade-in fade-in-delay-3">
+        <img src="https://images.unsplash.com/photo-1547058886-af77992d478c?w=500&q=80" alt="Goat Meat"/>
+        <span class="exp-card-num">04</span>
+        <div class="exp-card-label">
+          <h3>Tender Goat Meat</h3>
+          <p>Slow-cooked traditional cuts paired with deep local vegetable sides.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="container">
+    <div class="amenities-grid">
+      <div class="amenity-item fade-in"><div class="amenity-icon">🏊‍♂️</div><div class="amenity-name">Pristine Pool</div></div>
+      <div class="amenity-item fade-in fade-in-delay-1"><div class="amenity-icon">🍹</div><div class="amenity-name">Lounge Bar</div></div>
+      <div class="amenity-item fade-in fade-in-delay-2"><div class="amenity-icon">📶</div><div class="amenity-name">Free Wi-Fi</div></div>
+      <div class="amenity-item fade-in"><div class="amenity-icon">🔒</div><div class="amenity-name">Secure Parking</div></div>
+      <div class="amenity-item fade-in fade-in-delay-1"><div class="amenity-icon">🍽️</div><div class="amenity-name">Restaurant</div></div>
+      <div class="amenity-item fade-in fade-in-delay-2"><div class="amenity-icon">🛡️</div><div class="amenity-name">24/7 Security</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-eyebrow">Venues & Events</p>
+      <h2 class="section-title">Your Moment, Perfected</h2>
+      <p class="section-body">From intimate weddings to boardroom conferences — we set the scene. You make the memories.</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card fade-in">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Weddings"/>
+        <div class="event-card-body">
+          <p class="event-tag">Weddings & Celebrations</p>
+          <h3 class="event-title">Your Perfect Day</h3>
+          <p class="event-desc">Lush garden settings, warm ambient lighting, and a dedicated team to make every detail of your event unforgettable.</p>
+        </div>
+      </div>
+      <div class="event-card fade-in fade-in-delay-1">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Conferences"/>
+        <div class="event-card-body">
+          <p class="event-tag">Conferences & Corporate</p>
+          <h3 class="event-title">Where Business Meets Calm</h3>
+          <p class="event-desc">Modern conference space with catering, AV support and breakout areas. Built for teams that think better in great environments.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://wa.me/260XXXXXXXXX" class="btn-primary">💬 Enquire About Events</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header fade-in">
+      <p class="section-eyebrow">Gallery</p>
+      <h2 class="section-title">See It for Yourself</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Lodge grounds"/>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-1" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Room interior"/>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-2" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Dining"/>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-1" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Pool"/>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-2" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Events"/>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;color:var(--muted);font-size:.82rem">Click any image to view full screen · Real lodge photos to be added</p>
+  </div>
+</section>
+
+<!-- BOOK CTA -->
+<section id="book">
+  <div class="book-content fade-in">
+    <p class="section-eyebrow">Reservations</p>
+    <h2 class="book-title">Ready to Stay?</h2>
+    <p class="book-sub">Reach out directly and we'll take care of everything — quick, easy, no complications.</p>
+    <div class="book-btns">
+      <a href="https://wa.me/260XXXXXXXXX" class="btn-whatsapp">💬 WhatsApp Us</a>
+      <a href="tel:+260XXXXXXXXX" class="btn-call">📞 Call Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow fade-in">Get In Touch</p>
+        <h2 class="section-title fade-in">We're Here<br>For You</h2>
+        <p class="section-body fade-in">Questions about a booking, an event, or just want to know more? We respond fast.</p>
+        <div class="contact-info">
+          <div class="contact-item fade-in">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-value">Plot 9633 Central Street<br>Chudleigh, Lusaka, Zambia</div>
+            </div>
+          </div>
+          <div class="contact-item fade-in fade-in-delay-1">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Phone / WhatsApp</div>
+              <div class="contact-value"><a href="tel:+260XXXXXXXXX">+260 XXX XXX XXX</a></div>
+            </div>
+          </div>
+          <div class="contact-item fade-in fade-in-delay-2">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:info@dospalmaslodge.co.zm">info@dospalmaslodge.co.zm</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="map-embed fade-in" style="margin-top:28px">
+          <div class="map-placeholder" style="background:var(--sand);height:180px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;border-radius:6px;">
+            <span style="font-size:2rem">📍</span>
+            <span style="font-size:.88rem;color:var(--muted);text-align:center">Plot 9633 Central St, Chudleigh</span>
+            <a href="https://share.google/yqQOKBlPWcOH1Zl16" target="_blank" style="color:var(--green);font-weight:600;font-size:.85rem;text-decoration:none;border:1.5px solid var(--green);padding:8px 20px;border-radius:4px;">Open in Google Maps →</a>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in fade-in-delay-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Your name"/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Your surname"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="text" placeholder="+260 XXX XXX XXX"/>
+        </div>
+        <div class="form-group">
+          <label>Email (Optional)</label>
+          <input type="email" placeholder="your@email.com"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date"/>
+          </div>
+          <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>I'm Interested In</label>
+          <select>
+            <option value="">Select an option</option>
+            <option>Palm Suite</option>
+            <option>Garden Room</option>
+            <option>Family Villa</option>
+            <option>Wedding / Celebration</option>
+            <option>Conference / Corporate Event</option>
+            <option>Dining Reservation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Any special requests or questions?"></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()">Send Enquiry</button>
+        <p class="form-note">We typically respond within a few hours via WhatsApp or call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo">DOS PALMAS <span>LODGE</span></a>
+        <p class="footer-tagline">"Come for a visit,<br>stay for a lifetime."</p>
+        <a href="https://wa.me/260XXXXXXXXX" class="footer-wa">💬 WhatsApp Us</a>
+      </div>
+      <div>
+        <p class="footer-heading">Navigate</p>
+        <ul class="footer-links">
+          <li><a href="#welcome">About Us</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#experience">Dining</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Services</p>
+        <ul class="footer-links">
+          <li><a href="#rooms">Accommodation</a></li>
+          <li><a href="#events">Weddings</a></li>
+          <li><a href="#events">Conferences</a></li>
+          <li><a href="#experience">Poolside Dining</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Find Us</p>
+        <ul class="footer-links">
+          <li><a href="https://share.google/yqQOKBlPWcOH1Zl16" target="_blank">Plot 9633 Central St</a></li>
+          <li><a href="https://share.google/yqQOKBlPWcOH1Zl16" target="_blank">Chudleigh, Lusaka</a></li>
+          <li><a href="tel:+260XXXXXXXXX">+260 XXX XXX XXX</a></li>
+          <li><a href="mailto:info@dospalmaslodge.co.zm">info@dospalmaslodge.co.zm</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <div class="footer-bottom">
+      <span>© 2026 Dos Palmas Lodge · Chudleigh, Lusaka, Zambia</span>
+      <div class="footer-socials">
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">tk</a>
+        <a href="https://wa.me/260XXXXXXXXX" class="social-link">💬</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Fade-in observer
+  const faders = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  faders.forEach(el => observer.observe(el));
+
+  // Lightbox
+  function openLightbox(el) {
+    const src = el.querySelector('img').src;
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Form submit
+  function handleSubmit() {
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = '✓ Enquiry Sent!';
+    btn.style.background = '#2A5540';
+    setTimeout(() => { btn.textContent = 'Send Enquiry'; btn.style.background = ''; }, 3000);
+  }
+</script>
+</body>
+</html>
